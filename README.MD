@@ -58,10 +58,10 @@ User has the ability to provide their own data by one of the following two ways:
 ## Provide your own json file<br/>
 Use the following command to run app from command line:
 
-java -jar -Djson.file.location=Absolute path of json file demo-0.0.1-SNAPSHOT.jar
+java -jar -Djson.file.location="Absolute path of json file" demo-0.0.1-SNAPSHOT.jar
 
 ## Provide restURL <br/>
 Use the following command to run app from command line:
 
-java -jar -Dservice.resturl=REST URL demo-0.0.1-SNAPSHOT.jar
+java -jar -Dservice.resturl="REST_URL" demo-0.0.1-SNAPSHOT.jar
 
