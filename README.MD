@@ -12,9 +12,8 @@ from a command line. Please see section "Running JAR" below.
 Default Port to access this application:
 
 ## VM Args(Optional)<br/>
-Optional VM Arguments:
--Dservice.resturl=<REST URL>
--Djson.file.location=<Absolute path of json file>
+-Dservice.resturl=<BR/>
+-Djson.file.location=
 
 ## Build<br/>
 To build the following are required:
@@ -27,10 +26,11 @@ To run the application in an IDE, simply open the project in IDE, and as long as
 you have java 8, mvn and dependency jar (can be downloaded), you will be able execute it
 like a regular java application. Once running, use http://localhost:8090 to get to home page.
 
-You can provide optional arguments from IDE (VM Arguments)
+You can provide optional arguments from IDE (VM Arguments). Please see Optional Argument section for more detail.
 
-## Running JAR<br/>
-To run the application from command line:
+## Running JAR from command line<br/>
+To run the application from command line: java -jar demo-0.0.1-SNAPSHOT.jar
+
 Maven build will create a demo-0.0.1-SNAPSHOT under the target folder.
 
 maven commands to use:
