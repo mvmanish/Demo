@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+        <title>Hockey Squad Maker</title>
+    </head>
+    <body>
+        <div class="jumbotron">
+            <h1 class="text-center">Welcome to the Squad Maker</h1>
+        </div>
+        <div id="squadContainer" class="container">
+
+            <div id="errorMessages" class="row alert alert-danger alert-dismissible" role="alert"
+                 th:unless="${#lists.isEmpty(errors)}">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <ul class="mb-0">
+                    <li th:each="errorMessage : ${errors}" th:text="${errorMessage}"
+                        data-ui-test-locator="Global Error Message"></li>
+                </ul>
+            </div>
+            <!--/*@thymesVar id="waitingList" type="java.util.ArrayList"*/-->
+            <form class="form-inline" th:if="${allowSquadCreation}" th:object="${userInputForm}" name="createSquad"
+                  th:method="post" th:action="@{/createSquads}">
+                 <input class="form-control mb-2 mr-sm-2" required="required" id="squadCount" th:field="*{squadCount}"
+                       type="number" min="2" placeholder="Number of Squads">
+                <button type="submit" class="btn btn-primary mb-2">Make Squads</button>
+            </form>
+            <form class="form-inline" th:if="${allowSquadReset}" name="createSquad" th:method="post"
+                  th:action="@{/resetSquads}">
+                <button type="submit" class="btn btn-primary mb-2">Reset</button>
+            </form>
+
+            <h3>Waiting list</h3>
+            <table class="table table-striped">
+                <tr>
+                    <thead class="thead-light">
+                    <th class="col-md-3">Player</th>
+                    <th  class="col-md-3 text-center">Skating</th>
+                    <th  class="col-md-3 text-center">Shooting</th>
+                    <th  class="col-md-3 text-center">Checking</th>
+                    </thead>
+                </tr>
+                <tr th:if="${not #lists.isEmpty(waitingList)}" th:each="var : ${waitingList}">
+                    <td th:text="${var.fullName}"></td>
+                    <td class="text-center" th:text='${var.getScoreForSkill("skating")}'></td>
+                    <td class="text-center" th:text='${var.getScoreForSkill("Shooting")}'></td>
+                    <td class="text-center" th:text='${var.getScoreForSkill("Checking")}'></td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(waitingList)}">
+                    <td class="text-center font-weight-bold" colspan="4">Waiting list is empty</td>
+                </tr>
+            </table>
+
+            <th:div class="row" th:if="${not #lists.isEmpty(squadsList)}" th:each="var1,iterStat : ${squadsList}">
+                <h3>Squad <span th:text="${iterStat.index+1}"></span></h3>
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <thead class="thead-light">
+                        <th class="col-md-3">Player</th>
+                        <th class="col-md-3 text-center">Skating</th>
+                        <th class="col-md-3 text-center">Shooting</th>
+                        <th class="col-md-3 text-center">Checking</th>
+                        </thead>
+                    </tr>
+                    <tr th:each="var : ${var1.squad}">
+                        <td th:text="${var.fullName}"></td>
+                        <td th:text='${var.getScoreForSkill("skating")}'></td>
+                        <td th:text='${var.getScoreForSkill("Shooting")}'></td>
+                        <td th:text='${var.getScoreForSkill("Checking")}'></td>
+                    </tr>
+                    <tr class="table-info">
+                        <td class="font-weight-bold">Average</td>
+                        <td class="font-weight-bold" th:text="${var1.totalSkatingAvg}"></td>
+                        <td class="font-weight-bold" th:text="${var1.totalShootingAvg}"></td>
+                        <td class="font-weight-bold" th:text="${var1.totalCheckingAvg}"></td>
+                    </tr>
+                </table>
+
+            </th:div>
+
+        </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+            crossorigin="anonymous"></script>
+    </body>
+</html>
