@@ -29,7 +29,8 @@ like a regular java application. Once running, use http://localhost:8090 to get 
 You can provide optional arguments from IDE (VM Arguments). Please see Optional Argument section for more detail.
 
 ## Running JAR from command line<br/>
-To run the application from command line: java -jar demo-0.0.1-SNAPSHOT.jar
+To run the application from command line:<br/> 
+<b>java -jar demo-0.0.1-SNAPSHOT.jar</b>
 
 Maven build will create a demo-0.0.1-SNAPSHOT under the target folder.
 
