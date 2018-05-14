@@ -39,7 +39,7 @@ public class Player {
         return skills.stream().filter(skill->skill.getType().equalsIgnoreCase(type)).findFirst().get().getRating();
     }
 
-
+    /*Keep the list of players in the roster sorted so we always get the player who has the least deviation from the mean on top. Thats the player we add first.*/
     public static Comparator<Player> sortByAvgDev = new Comparator<Player>() {
         @Override
         public int compare(Player o1, Player o2) {
