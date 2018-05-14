@@ -10,6 +10,19 @@ import lombok.Setter;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/*Author: Manish Mohan
+* This class is a helper class that will use Squad Objects to add players to them.
+* Step1. Figure out the squad size and final count of player in a squad.
+*
+* Step 2. Initialize player - Get each players avgerage score.
+* Step 3. Calculate the total average for all players. This is the average we will try a build the squad to.
+* Step 4. Build squad:
+*           - Everytime players are added to the squad, keep track of the current average of the squad.
+*           - Add the player with lower deviation between players avg score from the total mean avg to the squad that is the farther from mean.
+*           - Make sure that the squad size is balanced as players are being added.
+*
+* */
+
 @NoArgsConstructor
 @Getter
 @Setter

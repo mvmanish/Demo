@@ -11,6 +11,11 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
+/*
+* Squad object to keep track of all the players that are in the squad.
+* Also keep track of squad average at any time, number of players it has
+* and also its deviation from the mean score for all players.
+* */
 public class Squad {
     @NonNull
     private List<Player> squad;

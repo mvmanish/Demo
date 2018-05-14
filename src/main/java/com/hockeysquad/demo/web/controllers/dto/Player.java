@@ -16,7 +16,9 @@ import java.util.stream.Collectors;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
+/*
+* Player object to keep track of info on individual player and player score.
+* */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Player {
     private Long id;

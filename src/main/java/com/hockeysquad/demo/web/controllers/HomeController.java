@@ -69,6 +69,10 @@ public class HomeController {
         return "home/welcome";
     }
 
+    /*
+    * If user provided file location is provided, then use that to load data.
+    * If not then use the default 40 players list that is part of the project as json file.
+    * */
     private AllPlayers readDataFromFile(){
         errors = new ArrayList<>();
         AllPlayers allPlayers= new AllPlayers();
@@ -107,6 +111,10 @@ public class HomeController {
         }
         return  allPlayers;
     }
+
+    /*Get data to build squad.
+    * Step 1. Get the REST URL if it is provided.
+    * Step 2. If REST URL is not provided, get it from the json file.*/
     private AllPlayers getData(){
 
         RestTemplate restTemplate = new RestTemplate();
